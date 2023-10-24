@@ -1,3 +1,3 @@
 <?php 
-    const BOT_KEY = 'MTE2NjM0ODQwODM5NTY2MTMyMg.GmuKhk.P6V1IV_YMLzsFTpwhrG_O4VKUMBKNnMFFLEOyA';
+    const BOT_KEY = '';
     
