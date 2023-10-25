@@ -6,20 +6,24 @@
     use Discord\Parts\Channel\Message;
     use Discord\WebSockets\Intents;
     use Discord\WebSockets\Event;
+    use namespaceGreeting\Greetings;
 
     require_once('./key.php');
     require_once('./assets.php');
+    require_once('./greetings.php');
+
+    $greetings = new Greetings("hello folks I am subramani ","Thalapathy Vijay"); //hynea and owner
 
     $discord = new Discord([
         'token' => BOT_KEY,
         'intents' => Intents::getDefaultIntents()
     ]);
 
-    $discord->on('ready', function (Discord $discord) {
+    $discord->on('ready', function (Discord $discord) use ($greetings) {
         echo "Subramani wakes up!", PHP_EOL;
 
         // Listen for messages.
-        $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord) {
+        $discord->on(Event::MESSAGE_CREATE, function (Message $message, Discord $discord) use ($greetings) {
             echo "{$message->author->username}: {$message->content}", PHP_EOL;
 
             $channelId = $message->channel_id;
@@ -27,13 +31,15 @@
 
 
             // greeting
-            if($message->content === 'hi'){
-                $mychannel->sendMessage('Heeehheee');
+            if($message->content === '!hi subramani'){
+                $mychannel->sendMessage($greetings->hyenaGreeting);
+                $mychannel->sendMessage($greetings->hyenaGif);
             } 
             
             if ($message->content === '!owner') {
-                $mychannel->sendMessage("Annan yaaru thalapathy");
-                $mychannel->sendMessage('https://tenor.com/ud10l7cMlet.gif');
+
+                $mychannel->sendMessage($greetings->ownerGreeting);
+                $mychannel->sendMessage($greetings->ownerGif);
             }
 
             if ($message->content === '!enemies') {
