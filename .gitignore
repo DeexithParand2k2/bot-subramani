@@ -3,3 +3,5 @@
 
 # Ignore Composer's lock file
 /composer.lock
+
+/.env

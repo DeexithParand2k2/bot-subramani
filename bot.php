@@ -7,15 +7,23 @@
     use Discord\WebSockets\Intents;
     use Discord\WebSockets\Event;
     use namespaceGreeting\Greetings;
+    use Dotenv\Dotenv;
 
-    require_once('./key.php');
+    require_once 'vendor/autoload.php';
     require_once('./assets.php');
     require_once('./greetings.php');
+
+
+    $dotenv = Dotenv::createImmutable(__DIR__);
+    $dotenv->safeload();
+
+
+    $token = $_ENV['BOT_KEY'];
 
     $greetings = new Greetings("hello folks I am subramani ","Thalapathy Vijay"); //hynea and owner
 
     $discord = new Discord([
-        'token' => BOT_KEY,
+        'token' => $token,
         'intents' => Intents::getDefaultIntents()
     ]);
 
@@ -31,7 +39,7 @@
 
 
             // greeting
-            if($message->content === '!hi subramani'){
+            if($message->content === '!hi'){
                 $mychannel->sendMessage($greetings->hyenaGreeting);
                 $mychannel->sendMessage($greetings->hyenaGif);
             } 

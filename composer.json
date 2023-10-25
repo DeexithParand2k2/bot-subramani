@@ -1,6 +1,7 @@
 {
     "require": {
         "team-reflex/discord-php": "^7.3",
-        "giphy/giphy-php-client": "^1.0"
+        "giphy/giphy-php-client": "^1.0",
+        "vlucas/phpdotenv": "^5.5"
     }
 }
